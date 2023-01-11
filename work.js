@@ -10,6 +10,7 @@ const debug = false;
 const addNewRowButton = document.querySelector("#new");
 const testButton = document.querySelector("#test");
 const section = document.querySelector('section');
+const input = document.querySelector('#form');
 const costAt100percent = [180, 310, 530, 910, 1170, 2690];
 //cost for higher difficulty
 //=((100-difficulty) / 2) + 100
@@ -19,8 +20,16 @@ let numRows = 1;
 //main
 addNewRowButton.addEventListener('click', addNewRow);
 testButton.addEventListener('click', test2);
+input.addEventListener('keyup', pressEnter)
 
 //functions
+function pressEnter(e){
+    log(e)
+    if (e.key == 'Enter'){
+        addNewRow();
+    }
+}
+
 function addNewRow(){
     const newLine = document.createElement('p');
     let cost = document.querySelector('#form').value;
