@@ -6,7 +6,7 @@ console.error("get fucked");
 setInterval(addCosts, 100);
 
 //vars
-const debug = true;
+const debug = false;
 const addNewRowButton = document.querySelector("#new");
 const testButton = document.querySelector("#test");
 const section = document.querySelector('section');
