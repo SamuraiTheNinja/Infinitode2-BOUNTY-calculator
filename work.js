@@ -34,7 +34,7 @@ function addNewRow(){
     const newLine = document.createElement('p');
     let cost = document.querySelector('#form').value;
     let buyTime = determineBuyTime(numRows, cost, 60)//TODO: fix hard coded max coin return value
-    newLine.innerHTML = `${toOrdinal(numRows)}(cost: ${cost}) buy at ${buyTime} coins`;
+    newLine.innerHTML = `${toOrdinal(numRows)}(cost: ${cost}) buy at <b>${buyTime}</b> coins`;
     section.appendChild(newLine);
 
     //change input string
