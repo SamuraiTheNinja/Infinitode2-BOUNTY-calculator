@@ -27,6 +27,7 @@ function pressEnter(e){
     log(e)
     if (e.key == 'Enter'){
         addNewRow();
+        input.value = null;
     }
 }
 
