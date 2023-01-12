@@ -11,7 +11,7 @@ const addNewRowButton = document.querySelector("#new");
 const testButton = document.querySelector("#test");
 const section = document.querySelector('section');
 const input = document.querySelector('#form');
-const costAt100percent = [180, 310, 530, 910, 1170, 2690];
+const costAt100percent = [180, 310, 530, 910, 1170, 2690, 4610];
 //cost for higher difficulty
 //=((100-difficulty) / 2) + 100
 const actualCosts = [];
