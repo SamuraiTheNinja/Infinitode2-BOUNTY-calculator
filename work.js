@@ -44,7 +44,7 @@ function addNewRow(){
     }
 
     let buyTime = determineBuyTime(numRows, cost, 60)//TODO: fix hard coded max coin return value
-    newLine.innerHTML = `${toOrdinal(numRows)}(cost: ${cost}) buy at <b>${buyTime}</b> coins`;
+    newLine.innerHTML = `${toOrdinal(numRows)}(cost: ${cost}) buy at <b>${buyTime}</b> coins. ${wavesToRepay(cost)}`;
     section.appendChild(newLine);
 
     //change input string
@@ -116,6 +116,14 @@ function determineBuyTime(buyingN, cost, maxCoinReturn){
         currCoins++;
     }
 
+}
+
+function wavesToRepay(costOfEnhancer){
+    let numWaves = Math.ceil(costOfEnhancer/60)
+    
+    if (numWaves >= 10)
+        return `Pay for self in ${numWaves} waves`
+    return ""
 }
 
 function coinsGenerated(currentCoins, maxCoinReturn, coinsForMaxBonus){
