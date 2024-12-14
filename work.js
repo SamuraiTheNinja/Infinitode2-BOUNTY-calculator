@@ -6,11 +6,12 @@ console.error("get fucked");
 setInterval(addCosts, 100);
 
 //vars
-const debug = false;
+const debug = true;
 const totalSpentElement = document.querySelector('#totalSpent');
 const difficulty = document.querySelector('#difficulty');
-const addNewRowButton = document.querySelector("#new");
+const coinsInput = document.querySelector('#coins');
 const testButton = document.querySelector("#test");
+const updateButton = document.querySelector("#update");
 const section = document.querySelector('section');
 const input = document.querySelector('#form');
 const costAt100percent = [180, 310, 530, 910, 1560, 2690, 4610, 7900];
@@ -43,7 +44,9 @@ function addNewRow(){
         return;
     }
 
-    let buyTime = determineBuyTime(numRows, cost, 60)//TODO: fix hard coded max coin return value
+    let maxCoins = parseInt(coinsInput.value) || 60; // fallback to 60 if no value entered
+    console.log(`maxCoins: ${maxCoins}`);
+    let buyTime = determineBuyTime(numRows, cost, maxCoins);
     newLine.innerHTML = `${toOrdinal(numRows)}(cost: ${cost}) buy at <b>${buyTime}</b> coins. ${wavesToRepay(cost)}`;
     section.appendChild(newLine);
 
@@ -105,10 +108,21 @@ function determineBuyTime(buyingN, cost, maxCoinReturn){
 
 
     //guess and check near by time
-    let currCoins = 0;
+    let currCoins = cost;
+    let coinsForMaxBonus = maxCoinReturn / 0.02
+    log(`Coins for max bonus: ${coinsForMaxBonus}`);
+    log(`Max coin return: ${maxCoinReturn}`);
+    log(`Coins | ${buyingN - 1} modifier | ${buyingN} modifier`)
+    
     while(true){
-        let currentGenerated = (buyingN - 1) * coinsGenerated(currCoins, maxCoinReturn, 3000);
-        let newGenerated = buyingN * coinsGenerated(currCoins-cost, maxCoinReturn, 3000);
+        let currentGenerated = (buyingN - 1) * coinsGenerated(currCoins, maxCoinReturn, coinsForMaxBonus);
+        let newGenerated = buyingN * coinsGenerated(currCoins-cost, maxCoinReturn, coinsForMaxBonus);
+        
+        // log(`   ${buyingN-1}: ${currentGenerated} coins`);
+        // log(`   ${buyingN}: ${newGenerated} coins`);
+        // log('------------------------------------------------------')
+
+        log(`${currCoins}   | ${currentGenerated}         | ${newGenerated}`)
 
         if (newGenerated > currentGenerated){
             return currCoins;
@@ -135,11 +149,21 @@ function coinsGenerated(currentCoins, maxCoinReturn, coinsForMaxBonus){
     }
 
     let rawEfficiency = currentCoins / coinsForMaxBonus * 100;
+    // log(`Raw efficiency: ${rawEfficiency}`);
+    
     let efficiencyAsPercent = Math.floor(rawEfficiency);
+    // log(`Efficiency as percent: ${efficiencyAsPercent}`);
+    
     let efficiency = efficiencyAsPercent * 0.01
+    // log(`Final efficiency: ${efficiency}`);
 
     let rawCoinsGenerated = maxCoinReturn * efficiency;
+    // log(`Raw coins generated: ${maxCoinReturn} * ${efficiency} = ${rawCoinsGenerated}`);
+    
     let coinsGenerated = Math.floor(rawCoinsGenerated);
+    // log(`Final coins generated: ${coinsGenerated}`);
+    // log(``)
+
     return coinsGenerated
 }
 
