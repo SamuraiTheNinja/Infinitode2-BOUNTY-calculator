@@ -1,3 +1,22 @@
 body{
     background-color: darkgray;
 }
+
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

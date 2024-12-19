@@ -10,10 +10,14 @@
         <label for="difficulty">% difficulty </label>
         <input id="difficulty" type="number" min="1" max="999" value="100">
     </div>
-
     <div>
         <label for="coins">Max coins given: </label>
-        <input id="coins" type="number" min="0" value="0">
+        <input id="coins" type="number" min="50" max="100" value="50">
+    </div>
+
+    <div>
+        <label for="max-bonus">Coins needed for Max Bonus: </label>
+        <input id="max-bonus" type="number" min="2000" max="5000" value="2000">
     </div>
 
     <div>
@@ -24,14 +28,39 @@
         <button id="update">Update Values</button>
         <button id="test">test</button>
     </div>
-    <section>
-    </section>
+
+    <div>
+        <label for="user-input">Enter a value: </label>
+        <input id="user-input" type="number" min="0" value="0">
+        <span id="result">0</span>
+    </div>
+
+    <table>
+        <tr>
+            <td>
+                <h3>Bounty Modifiers</h3>
+                <section id="bounty-modifiers"></section>
+            </td>
+            <td>
+                <h3>Mining Modifiers</h3>
+                <section id="mining-modifiers"></section>
+            </td>
+        </tr>
+    </table>
+
 
     <br><br><br>
-    <div>
-        <h3>Total spent</h3>
-        <h3 id="totalSpent">0000</h3>
+
+    <div id="miners-section">
+        <h3>Miners</h3>
+        <table id="miners-table"></table>
     </div>
+
+    <div id="cumulative-section">
+        <h3>Cumulative Costs</h3>
+        <table id="cumulative-table"></table>
+    </div>
+
 </body>
 <footer>
 
